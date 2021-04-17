@@ -3,39 +3,74 @@
 /*
   Create a function named addTwo which accepts a number, adds 2 to the number and return the new value.
 */
-
+function addTwo(num=0){
+num = Number(num);
+return num + 2;
+}
+addTwo(45);
 /*
   Create a function named addThree which accepts a number, adds 3 to the number and return the new value.
 */
-
+function addThree(num=0){
+  num = Number(num);
+  return num + 3;
+  }
+  addThree(45);
 /*
   Create a function named addFive which accepts a number, adds 5 to the number and return the new value.
 */
-
+function addFive(num=0){
+  num = Number(num);
+  return num + 5;
+  }
+  addFive(45);
 /*
   Create a function named addTwoToArray which accepts:
     - An array of numbers
     - Returns a new array where 2 is added to each element
     - While doing so use the funciton addTwo
 */
-
+function addTwoToArray (num = [])
+{
+  for(let i =0; i<num.length; i++)
+  { 
+    num[i] = addTwo(num[i]);
+  }
+  return num;
+}
+addTwoToArray ([1,3,2,5]);
 /*
   Create a function named addThreeToArray which accepts:
     - an array of numbers
     - aeturns a new array where 2 is added to each element
     - while doing so use the funciton addThree
 */
-
+function addThreeToArray (num = [])
+{
+  for(let i =0; i<num.length; i++)
+  { 
+    num[i] = addThree(num[i]);
+  }
+  return num;
+}
+addThreeToArray([1,3,2,5]);
 /*
   Create a function named addFiveToArray which accepts:
     - an array of numbers
     - aeturns a new array where 2 is added to each element
     - while doing so use the funciton addThree
 */
-
+function addFiveToArray (num = [])
+{
+  for(let i =0; i<num.length; i++)
+  { 
+    num[i] = addFive(num[i]);
+  }
+  return num;
+}
+addFiveToArray([1,3,2,5]);
 /*
 In above function addTwoToArray, addThreeToArray, addFiveToArray we are repeating the code, let's fix this.
-
   Create a function named changeArray which accepts two arguments:
     - an array of numbers
     - a callback function
@@ -48,7 +83,15 @@ In above function addTwoToArray, addThreeToArray, addFiveToArray we are repeatin
     console.log(changeArray([1, 2, 3, 4, 5, 6], addThree)); // [4, 5, 6, 7, 8, 9]
     console.log(changeArray([1, 2, 3, 4, 5, 6], addFive)); // [6, 7, 8, 9, 10, 11]
 */
-
+function changeArray(num = [], cb)
+{
+  let finalArray = [];
+  for(let i=0; i<num.length; i++)
+  {
+    finalArray[i] = cb(num[i]);
+  }
+  return finalArray;
+}
 /*
   Create a function called sendMessage that accepts two arguments:
     - a string (message) and a function (callback).
@@ -59,13 +102,17 @@ In above function addTwoToArray, addThreeToArray, addFiveToArray we are repeatin
     console.log(sendMessage("Hello Alert!", alert));
     console.log(sendMessage("Hello Prompt!", prompt));
 */
-
+function sendMessage(message, callback)
+{
+callback(message);
+}
 /*
-
  Create a function named `first` that accepts an argument a function (callback) and return the same function defination.
-
 */
-
+function first(callback)
+{
+  return callback();
+}
 /*
  Create a function named `second`
   - Inside second create another function named `third` which accepts a number, adds 1 to it and returns it
