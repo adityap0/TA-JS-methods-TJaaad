@@ -111,7 +111,7 @@ callback(message);
 */
 function first(callback)
 {
-  return callback();
+  return callback;
 }
 /*
  Create a function named `second`
@@ -119,7 +119,13 @@ function first(callback)
   - Return the function defination (third) from the second function
   - Also write the required code to call the function
 */
-
+function second(){
+  function third(num=0){
+    return num +1;
+  }
+  return third;
+}
+second();
 /*
  Write a function named `callMe` which 
   - accept a function (callback function) as argument.
@@ -127,7 +133,11 @@ function first(callback)
   - return final varibale from the function.
   - also write the required code to call the function.
 */
-
+function callMe (callback){
+var final =  callback();
+return final;
+}
+callMe(alert);
 // Data Starts (Don't change this)
 const people = [
   { name: 'John Doe', age: 16 },
@@ -136,7 +146,7 @@ const people = [
   { name: 'Jessy Pinkman', age: 18 },
 ];
 
-const grades = [
+const grade = [
   { name: 'John', grade: 8, sex: 'M' },
   { name: 'Sarah', grade: 12, sex: 'F' },
   { name: 'Bob', grade: 16, sex: 'M' },
@@ -160,7 +170,9 @@ const grades = [
     console.log(isAdult(people[1])); // true
     console.log(isAdult(people[2])); // true
 */
-
+function isAdult(personDetail){
+  return personDetail.age > 18;
+}
 /*
   Create a function named isMale which accepts:
     - an object
@@ -171,18 +183,22 @@ const grades = [
     console.log(isMale(grade[1])); // false
     console.log(isMale(grade[2])); // true
 */
-
+function isMale(gradeDetail){
+  return (gradeDetail.sex === "M");
+}
 /*
   Create a function named isFemale which accepts:
     - an object
     - returns true or false based on the `sex` property in the object is `F` or not
 
   EXAMPLE:
-    console.log(isFemale(grade[0])); // false
-    console.log(isFemale(grade[1])); // true
-    console.log(isFemale(grade[2])); // false
+    console.log(isFemale(grades[0])); // false
+    console.log(isFemale(grades[1])); // true
+    console.log(isFemale(grades[2])); // false
 */
-
+function isFemale(gradeDetail){
+  return (gradeDetail.sex === "F");
+}
 /*
   Create a function named isGradeA which accepts:
     - an object
@@ -193,7 +209,9 @@ const grades = [
     console.log(isGradeA(grade[1])); // false
     console.log(isGradeA(grade[2])); // true
 */
-
+function isGradeA(gradeDetail){
+return gradeDetail.grade > 12;
+}
 /*
   Create a function named isGradeB which accepts:
     - an object
@@ -204,7 +222,9 @@ const grades = [
     console.log(isGradeB(grade[1])); // true
     console.log(isGradeB(grade[2])); // false
 */
-
+function isGradeB(gradeDetail){
+  return ((gradeDetail.grade >= 8) && (gradeDetail.grade <= 12));
+  }
 /*
   Create a function named isGradeC which accepts:
     - an object
@@ -215,7 +235,9 @@ const grades = [
     console.log(isGradeC(grade[1])); // false
     console.log(isGradeC(grade[2])); // false
 */
-
+function isGradeC(gradeDetail){
+  return (gradeDetail.grade <= 8);
+  }
 /*
   Create a function named filterAdult which accepts:
     - an array of objects
@@ -231,7 +253,20 @@ const grades = [
       { name: 'Liam Smith', age: 20 },
     ];
 */
-
+function filterAdult(personDetail)
+{ 
+  let final = [];
+  for(i =0; i<personDetail.length; i++)
+  { 
+    if (isAdult(people[i]))
+    {
+      final[i] = people[i]
+    }
+  }
+  return final;
+}
+console.log(filterAdult(people));
+isAdult(people[1])
 /*
   Create a function named filterMale which accepts:
     - an array of objects
@@ -250,7 +285,19 @@ const grades = [
       { name: 'Donald', grade: 5, sex: 'M' },
     ];
 */
-
+function filterMale(personDetail)
+{ 
+  let final = [];
+  for(i =0; i<personDetail.length; i++)
+  { 
+    if (isMale(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filterMale(grade));
 /*
   Create a function named filterFemale which accepts:
     - an array of objects
@@ -269,7 +316,19 @@ const grades = [
       { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
-
+function filterFemale(personDetail)
+{ 
+  let final = [];
+  for(i =0; i<personDetail.length; i++)
+  { 
+    if (isFemale(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filterFemale(grade));
 /*
   Create a function named filterGradeA which accepts:
     - an array of objects
@@ -289,7 +348,20 @@ const grades = [
       { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
-
+function filterGradeA(gradeDetail)
+{ 
+  let final = [];
+  for(i =0; i<gradeDetail.length; i++)
+  { 
+    if (isGradeA(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filterGradeA(grade));
+// isGradeA(grade[1])
 /*
   Create a function named filterGradeB which accepts:
     - an array of objects
@@ -308,7 +380,19 @@ const grades = [
      { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
-
+function filterGradeB(gradeDetail)
+{ 
+  let final = [];
+  for(i =0; i<gradeDetail.length; i++)
+  { 
+    if (isGradeB(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filterGradeB(grade));
 /*
   Create a function named filterGradeC which accepts:
     - an array of objects
@@ -326,7 +410,19 @@ const grades = [
       { name: 'Donald', grade: 5, sex: 'M' },
     ]
 */
-
+function filterGradeC(gradeDetail)
+{ 
+  let final = [];
+  for(i =0; i<gradeDetail.length; i++)
+  { 
+    if (isGradeC(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filterGradeC(grade));
 /*
 We are repeating lots of code in above functions like filterGradeC, filterGradeB, filterGradeA, filterAdult. We will fix
 this by making a higher order function named filter. Now using one function filter we will be able to filter anything we want.
@@ -347,7 +443,19 @@ filter is a higher order function.
     console.log(filter(grade, isGradeB));
     console.log(filter(grade, isGradeC));
 */
-
+function filter(gradeDetail, cb)
+{ 
+  let final = [];
+  for(i =0; i<gradeDetail.length; i++)
+  { 
+    if (cb(grade[i]))
+    {
+      final[i] = grade[i]
+    }
+  }
+  return final;
+}
+console.log(filter(people, isAdult));
 /*
   Create a function named multiplyBy which accepts:
     - a number (num)
