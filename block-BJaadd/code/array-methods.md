@@ -19,7 +19,7 @@ Example:
 
 1. `concat`
 
-   - Parameter: n (any) number of values (number, string, boolean, array, null, undefined, object and function etc)
+   - Parameter: n (any) number of values (number, string, boolean, array, null,       undefined, object and function etc)
    - Return: a single Array consisting of by all the values passed as parameters in the same order.
    - Example:
      ```js
@@ -34,6 +34,16 @@ Example:
    - No it does not mutate the original array
 
 2. `join`
+   - Parameter: accepts a character that you want between the elements
+   - Return: a new array joining all the values
+   - Example:
+     ```js
+     let numbers = [1, 2, 3];
+     numbers.join(' '); //"1 2 3"
+    
+     ```
+   - `concat` accepts n number of values and returns one array with all the values in same order. It does not change the original array.
+   - No it does not mutate the original array
 3. `flat`
 4. `push`
 5. `indexOf`
