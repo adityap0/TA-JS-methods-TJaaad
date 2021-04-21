@@ -23,79 +23,34 @@ function add(acc, item)
 }
 console.log(`The average grade is : ${sum/persons.length}`);
 // Find the average grade of male
-let count =0;
-let sum =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-if(item.sex ==='M')
-{
-  count = count +1;
-  sum = sum + item.grade;
-}
-}
-console.log(sum/count);
+let maleGradavg = persons.filter((item) => item.sex ==='M').reduce((acc,item)=>{return acc + item.grade},0)/persons.length;
 // Find the average grade of female
-let count =0;
-let sum =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-if(item.sex ==='F')
-{
-  count = count +1;
-  sum = sum + item.grade;
-}
-}
-console.log(sum/count);
-// Find the highest grade
-let high =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-if(item.grade>high)
-{
-  high = item.grade;
-}
-}
-console.log(high);
-// Find the highest grade in male
-let high =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-  if(item.sex ==='M')
-  {
-    if(item.grade>high)
-    {
-      high = item.grade;
-    }
-  }
-}
-console.log(high);
-// Find the highest grade in female
-let high =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-  if(item.sex ==='F')
-  {
-    if(item.grade>high)
-    {
-      high = item.grade;
-    }
-  }
-}
-console.log(high);
-// Find the highest grade for people whose name starts with 'J' or 'P'
-let high =0;
-persons.forEach(findmaleavg)
-function findmaleavg(item){
-  if(item.name.startsWith('J')||item.name.startsWith('P'))
-  {
-    if(item.grade>high)
-    {
-      high = item.grade;
-    }
-  }
-}
-console.log(high);
+let maleGradavg = persons.filter((item) => item.sex ==='F').reduce((acc,item)=>{return acc + item.grade},0)/persons.length;
 
+// Find the highest grade
+let highestGrade = persons
+.map((item)=> item.grade)
+.sort((a,b) => a-b)
+.pop();
+// Find the highest grade in male
+let maleTopper = persons
+.filter((person)=> person.sex==='M')
+.map((item)=> item.grade)
+.sort((a,b) => a-b)
+.pop();
+// Find the highest grade in female
+let maleTopper = persons
+.filter((person)=> person.sex==='F')
+.map((item)=> item.grade)
+.sort((a,b) => a-b)
+.pop();
+// Find the highest grade for people whose name starts with 'J' or 'P'
+
+let maleTopper = persons
+.filter((person)=> person.name.startsWith('J')||person.name.startsWith('P'))
+.map((item)=> item.grade)
+.sort((a,b) => a-b)
+.pop();
 
 const fruitBasket = [
   'banana',
@@ -119,33 +74,15 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
-let fruitsObj ={};
-let count = 0;
-fruitsObj = fruitBasket.filter(findFruit)
-function findFruit(item)
-{
-  if(item ==='banana')
-  {
-    count++;
+let fruitsObj = fruitBasket.reduce((acc,item)=>{
+  if (acc[item]){
+    acc[item] = acc[item] +1;
   }
-  else if (item ==='cherry')
-  {
-    count++;
+  else{
+    acc[item] = 1;
   }
-  else if (item ==='orange')
-  {
-    count++;
-  }
-  else if (item ==='apple')
-  {
-    count++;
-  }
-  else if (item ==='apple')
-  {
-    count++;
-  }
-  
-}
+  return acc;
+},{});
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -155,6 +92,11 @@ Output:
 
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
+let fruitsArr = Object.keys(fruitsObj).reduce((acc,cv) =>{
+  acc = acc.concat([[cv, fruitsObj[cv]]]);
+  return acc;
+},[]);
+
 
 const data = [
   [1, 2, 3],
@@ -162,6 +104,11 @@ const data = [
   [7, 8, 9],
   [10, 11, 12],
 ];
+
+data.reduce((acc,item) =>{
+  acc = acc.concat(item)
+  return acc;
+},[])
 
 // Using reduce flat data array
 
@@ -171,7 +118,10 @@ const dataTwo = [
   [7, 8, 9],
   [[10, 11], 12],
 ];
-
+data.reduce((acc,item) =>{
+  acc = acc.concat(item.flat(Infinity))
+  return acc;
+},[])
 // Using reduce flat dataTwo array
 
 /*
@@ -213,7 +163,7 @@ function triple(num)
 }
 function half(num)
 {
-  return num/2;
+  return Math.round(num/2);
 }
 /*
 Using the pipeline variable that contains the collection of functions, taking the initial value 3 find the output.
@@ -228,11 +178,10 @@ EXAMPLE:
 
   ...
 */
-pipeline.filter(finalreturn)
-function finalreturn(num)
-{
-  item(3);
-}
+pipeline.reduce((acc,item) =>{
+  acc = item(acc);
+  return acc;
+},3)
 
 let pipeline2 = [
   increment,
@@ -249,3 +198,8 @@ let pipeline2 = [
 ];
 
 // Find the output using pipeline2 the initial value if 8
+
+pipeline2.reduce((acc,item) =>{
+  acc = item(acc);
+  return acc;
+},8)
