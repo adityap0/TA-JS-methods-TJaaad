@@ -16,18 +16,86 @@ let persons = [
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
 // Find the average grade
-
+let sum = persons.reduce(add, 0)
+function add(acc, item)
+{
+  return acc + item.grade;
+}
+console.log(`The average grade is : ${sum/persons.length}`);
 // Find the average grade of male
-
+let count =0;
+let sum =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+if(item.sex ==='M')
+{
+  count = count +1;
+  sum = sum + item.grade;
+}
+}
+console.log(sum/count);
 // Find the average grade of female
-
+let count =0;
+let sum =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+if(item.sex ==='F')
+{
+  count = count +1;
+  sum = sum + item.grade;
+}
+}
+console.log(sum/count);
 // Find the highest grade
-
+let high =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+if(item.grade>high)
+{
+  high = item.grade;
+}
+}
+console.log(high);
 // Find the highest grade in male
-
+let high =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+  if(item.sex ==='M')
+  {
+    if(item.grade>high)
+    {
+      high = item.grade;
+    }
+  }
+}
+console.log(high);
 // Find the highest grade in female
-
+let high =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+  if(item.sex ==='F')
+  {
+    if(item.grade>high)
+    {
+      high = item.grade;
+    }
+  }
+}
+console.log(high);
 // Find the highest grade for people whose name starts with 'J' or 'P'
+let high =0;
+persons.forEach(findmaleavg)
+function findmaleavg(item){
+  if(item.name.startsWith('J')||item.name.startsWith('P'))
+  {
+    if(item.grade>high)
+    {
+      high = item.grade;
+    }
+  }
+}
+console.log(high);
+
 
 const fruitBasket = [
   'banana',
@@ -51,7 +119,33 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
-
+let fruitsObj ={};
+let count = 0;
+fruitsObj = fruitBasket.filter(findFruit)
+function findFruit(item)
+{
+  if(item ==='banana')
+  {
+    count++;
+  }
+  else if (item ==='cherry')
+  {
+    count++;
+  }
+  else if (item ==='orange')
+  {
+    count++;
+  }
+  else if (item ==='apple')
+  {
+    count++;
+  }
+  else if (item ==='apple')
+  {
+    count++;
+  }
+  
+}
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -101,6 +195,26 @@ let pipeline = [
   increment,
 ];
 
+function increment(num)
+{
+  return num+1;
+}
+function double(num)
+{
+  return num*2;
+}
+function decrement(num)
+{
+  return num-1;
+}
+function triple(num)
+{
+  return num*3;
+}
+function half(num)
+{
+  return num/2;
+}
 /*
 Using the pipeline variable that contains the collection of functions, taking the initial value 3 find the output.
 
@@ -114,6 +228,11 @@ EXAMPLE:
 
   ...
 */
+pipeline.filter(finalreturn)
+function finalreturn(num)
+{
+  item(3);
+}
 
 let pipeline2 = [
   increment,
